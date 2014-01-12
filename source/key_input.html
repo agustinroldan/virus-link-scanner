@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Virus Link Scanner</title>
+    <style>
+    	body{
+    	margin-left:auto;
+    	margin-right:auto;
+    	text-align:center;
+    	}
+    	button{
+	border:none;
+	padding:5px;
+	width:100%;
+	background-color:white;
+	border-radius:10px;
+	font-size:17px;
+	color:black;
+	}
+	button:hover{
+	border:none;
+	padding:5px;
+	background-color:white;
+	border-radius:10px;
+	font-size:17px;
+	color:#C40233;
+	cursor:pointer;
+	}
+	button:active{
+	color:blue;
+	border-radius:10px;
+	font-size:17px;
+	}
+	button:focus {
+	    outline: 0;
+	}
+	input{
+	font-size:large;
+	width:80%;
+	}
+	#texterr{
+	color:#C40233;
+	}
+	#main{
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	width:500px;
+	height:400px;
+	}
+
+    </style>
+  </head>
+  <body>
+     <div id="main">
+	<div id="upload"></div>
+	<h3>How to use</h3>
+	<ul style="text-align:left;">
+		<li>While on a web page, select and right click on a link that your interested in downloading but are unsure if the link is safe</li>
+		<li>In the context menu, select the following option : "Scan link for viruses"</li>
+		<li>The extension will begin doing the analysis and determine the appropiate steps</li>
+		<li>If a virus exists, you will be taken to a new page with the results of the scan. No download will occur</li>
+		<li>If the file is clean, then you will be prompted to save the file instead</li>
+	
+	</ul>
+<h3>Dont have a Metascan Online API key?</h3>
+<p>If you need a Metascan Online API key, you can get a key from the <a href="https://portal.opswat.com/" target="_blank">OPSWAT Portal</a>.</p>
+	<ul style="text-align:left;">
+<li>Navigate in any web browser to <a href="https://portal.opswat.com/" target="_blank">https://portal.opswat.com</a> </li><li> If you have not already, create a free account</li><li> After logging in, navigate to the Security Applications tab </li><li>Click on the Metascan Online API tab to activate your Metascan Online API key</li><br>* Instructions were derived from OPSWAT.
+
+	
+	</ul>
+   <div>
+       <script src="java_install.js"></script>
+  </body>
+</html>
+

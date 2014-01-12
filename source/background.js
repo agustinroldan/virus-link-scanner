@@ -37,16 +37,13 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
         // check for api key value pair
         var apikey = localStorage['apikey'];
         data_download(url_link);
-        
-        
-    /*if(undefined == apikey){
-    console.log('This is it.')
-	chrome.tabs.executeScript(null, {code: 'var head= document.getElementsByTagName("body")[0];var dd= document.createElement("div");dd.innerHTML = "<h1>Hello</h1><h1>Hello</h1><h1>Hello</h1>";dd.style.width="100%";dd.style.height="100%";dd.style.backgroundColor="red";dd.style.position="absolute";head.appendChild(dd);'});
+        if(undefined == apikey){
+	chrome.tabs.executeScript(null, {code: 'alert("No valid API Key Found. Please Add one using the extension popup above.")'});
     }
     /// Try doing your analysis.
     else{
         data_download(url_link);
-    }*/
+    }
 
 
 
@@ -72,7 +69,27 @@ chrome.contextMenus.create({
 
 
 
+
+
+
+
 /////////////// My code implementation of api check.
+
+
+
+///// check to see if new install
+function install(){
+if (localStorage.getItem('install_time'))
+        return;
+
+    var time = new Date().getTime();
+    localStorage.setItem('install_time', time);
+    chrome.tabs.create({url: "key_input.html"});
+}
+install();
+
+
+
 var obj_ret_results; /// JSON response for results
 var obj_ret; /// JSON response for results
 var act_id; /// Global id for file
@@ -114,7 +131,7 @@ function link_send(origin) {
         }
 
         xmlhttp.open("GET", "https://api.metascan-online.com/v1/hash/" + hash_data, true);
-        xmlhttp.setRequestHeader("apikey", "e1c25026d4b9ff88907189c50402075a");
+        xmlhttp.setRequestHeader("apikey", localStorage['apikey']);
         xmlhttp.send();
 }
 
@@ -127,12 +144,15 @@ function get_results(origin) {
                         var obj_ret_results = JSON.parse(xmlhttp.responseText);
                         //var obj_ret = eval('('+xmlhttp.responseText+')');
                         console.log(obj_ret_results);
-                        sleep(3000);
+                        //sleep(3000);
                         console.log('Almost done : ' + obj_ret_results.scan_results.progress_percentage);
                         if (obj_ret_results.scan_results.progress_percentage < 100) {
+                                var se = setTimeout(function(){
                                 get_results(obj_ret_results.data_id);
+                                },5000);
                         }
                         if (obj_ret_results.scan_results.progress_percentage == 100) {
+                        	clearTimeout(se);
                                 var res_scan = obj_ret_results.scan_results.scan_all_result_a;
                                 // Check if results exist for hash lookup
                                 if (undefined != res_scan) {
@@ -157,6 +177,7 @@ function get_results(origin) {
                                         }
 
                                 }
+                              
                                 ///////////////////
                         }
 
@@ -164,7 +185,7 @@ function get_results(origin) {
         }
 
         xmlhttp.open("GET", "https://api.metascan-online.com/v1/file/" + hash_data, true);
-        xmlhttp.setRequestHeader("apikey", "e1c25026d4b9ff88907189c50402075a");
+        xmlhttp.setRequestHeader("apikey", localStorage['apikey']);
         xmlhttp.send();
 }
 
@@ -195,7 +216,7 @@ function send_file_api(file_data) {
 
         //fd.append("file",file_data);
         http.open("POST", "https://api.metascan-online.com/v1/file", true);
-        http.setRequestHeader("apikey", "e1c25026d4b9ff88907189c50402075a");
+        http.setRequestHeader("apikey", localStorage['apikey']);
         http.send(file_data);
 
 }
@@ -242,17 +263,6 @@ function data_download(url) {
                 }
         }
         xhr.send();
-}
-
-
-//// Function for waiting - 
-function sleep(milliseconds) {
-        var start = new Date().getTime();
-        for (var i = 0; i < 1e7; i++) {
-                if ((new Date().getTime() - start) > milliseconds) {
-                        break;
-                }
-        }
 }
 
 

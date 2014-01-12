@@ -16,11 +16,11 @@ document.getElementById('bsub').onclick = function(){
 
 function run(){
 if(undefined == apikey){
-	document.getElementById('upload').innerHTML="<p>Virus Link Scanner</p><div id='texterr'></div><input id='data' type='text' placeholder='update key here' ><button id='bsub' >Update Key</button>";
+	document.getElementById('upload').innerHTML="<h1>Virus Link Scanner</h1><p>Thanks for installing.<br> Please enter your Metascan Online API key to begin using this extension.</p><div id='texterr'></div><input id='data' type='text' placeholder='Metascan Online API key key here' ><button id='bsub' >Update Key</button>";
     }
     /// Try doing your analysis.
     else{
-	document.getElementById('upload').innerHTML="<p>Virus Link Scanner</p><p>"+apikey+"</p><div id='texterr'></div><input id='data' type='text' placeholder='update key here' ><button id='bsub' >Update Key</button>";
+	document.getElementById('upload').innerHTML="<h1>Virus Link Scanner</h1><p>"+apikey+"</p><div id='texterr'></div><input id='data' type='text' placeholder='Metascan Online API key key here' ><button id='bsub' >Update Key</button>";
     }
 
 }
@@ -44,6 +44,7 @@ function key_test(val,ind) {
 			console.log("Setting key");
 			run();
 			click();
+			document.getElementById('texterr').innerHTML="Valid Key : You may close this page now";
                 }
         }
 

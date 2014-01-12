@@ -1,20 +1,54 @@
 <!doctype html>
 <html>
   <head>
-    <title></title>
+    <title>Virus Link Scanner</title>
     <style>
     	body{
     	margin-left:auto;
     	margin-right:auto;
     	text-align:center;
     	}
+    	button{
+	border:none;
+	padding:5px;
+	width:100%;
+	background-color:white;
+	border-radius:10px;
+	font-size:17px;
+	color:black;
+	}
+	button:hover{
+	border:none;
+	padding:5px;
+	background-color:white;
+	border-radius:10px;
+	font-size:17px;
+	color:#C40233;
+	cursor:pointer;
+	}
+	button:active{
+	color:blue;
+	border-radius:10px;
+	font-size:17px;
+	}
+	button:focus {
+	    outline: 0;
+	}
+	input{
+	font-size:large;
+	width:80%;
+	}
+	#texterr{
+	color:#C40233;
+	}
+
+
     </style>
-    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
   </head>
   <body>
      <div id="main" style="width:300px;height:200px;">
-	<h1>Virus Scanner!!</h1>
 	<div id="upload"></div>
+	<p>Need a Api Key : <a href="https://portal.opswat.com/" target="_blank">OPSWAT Portal</a></p>
    <div>
        <script src="java.js"></script>
   </body>
