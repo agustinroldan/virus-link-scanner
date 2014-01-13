@@ -156,6 +156,8 @@ function scan_check(res_scan,obj_ret){
                                         res_page.document.write("<pre class='prettyprint'>" + JSON.stringify(obj_ret, undefined, 2) + "</pre>");
                                         res_page.document.close();
                                 } else if (res_scan == 'Clean') {
+                                	
+                                	// using saveAS will reuse the blob data and avoid having to make another resource request.
                                         //saveAs(blob_data, url_link.substring(url_link.lastIndexOf('/') + 1));
                                         chrome.downloads.download({url: url_link,saveAs:true},function(downloadId) {return;} );/*function(downloadId) {
 					    var ids = getOpeningIds();
