@@ -24,7 +24,6 @@
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
 var url_link = '';
 /*
 function getOpeningIds() {
@@ -55,24 +54,28 @@ chrome.downloads.onChanged.addListener(function (delta) {
 });
 */
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
-        /// begin doing my testing for virus detection.
-        /// Use Alerts at the moment.
-        url_link = info.linkUrl;
-        // check for api key value pair
-        var apikey = localStorage['apikey'];
-        if(undefined == apikey){
-	chrome.tabs.executeScript(null, {code: 'alert("No valid API Key Found. Please Add one using the extension popup above.")'});
-    }
-    /// Try doing your analysis.
-    else{
-    	chrome.tabs.executeScript(null, {code: 'document.body.scrollTop = document.body.scrollTop+1;'});
-        data_download(url_link);
-    }
+	/// begin doing my testing for virus detection.
+	/// Use Alerts at the moment.
+	url_link = info.linkUrl;
+	// check for api key value pair
+	var apikey = localStorage['apikey'];
+	if (undefined == apikey) {
+		chrome.tabs.executeScript(null, {
+			code: 'alert("No valid API Key Found. Please Add one using the extension popup above.")'
+		});
+	}
+	/// Try doing your analysis.
+	else {
+		chrome.tabs.executeScript(null, {
+			code: 'document.body.scrollTop = document.body.scrollTop+1;'
+		});
+		data_download(url_link);
+	}
 
 
 
-        ///
-        ///
+	///
+	///
 /*chrome.downloads.download({url: url_link}, function(downloadId) {
     var ids = getOpeningIds();
     if (ids.indexOf(downloadId) >= 0) {
@@ -81,11 +84,11 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
     ids.push(downloadId);
     setOpeningIds(ids);
   });*/
-        //
+	//
 });
 
 chrome.contextMenus.create({
-        id: 'open',
-        title: 'Scan link for viruses',
-        contexts: ['link'],
+	id: 'open',
+	title: 'Scan link for viruses',
+	contexts: ['link'],
 });

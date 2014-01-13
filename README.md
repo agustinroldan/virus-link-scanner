@@ -7,13 +7,13 @@ How to install: To use this extension, you will either need to use the compiled 
 
 Instructions:
 
-On the enxtensions section in chrome, select developer mode. 
+On the extensions section in chrome, select developer mode.
 
 Once selected, you can load an unpacked extension and load up the files.
 
 In this case you will load from the source folder in the directory of this git repo.
 
-You will be prompted to adding your key by the extension. If no extension is added, then it will alert you that it cant complete the call beause it lacks a key.
+You will be prompted to adding your key by the extension. If no extension is added, then it will alert you that it cant complete the call because it lacks a key.
 
 * When inserting an api key, it will be checked by initiating an api call with an example hash to ensure that the key is valid. When confirmed that it is valid, it will be saved to localstorage. If incorrect, it will not save it.
 
