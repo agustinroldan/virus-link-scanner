@@ -1,6 +1,10 @@
 virus-link-scanner
 ==================
 
+
+Description: 
+	This extension uses the Metascan Online API to analyze file links for potential virus threats. This extension adds a context menu option when right clicking on a link to scan the file before downloading. Risky files will not be downloaded, while clean files will. Results page will be shown for risky files.
+
 Chrome extension : virus link scanner 
 
 How to install: To use this extension, you will either need to use the compiled extension or the unpacked files in the source folder.
