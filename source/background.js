@@ -24,6 +24,7 @@
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 var url_link = '';
 /*
 function getOpeningIds() {
@@ -66,29 +67,12 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 	}
 	/// Try doing your analysis.
 	else {
-		chrome.tabs.executeScript(null, {
-			code: 'document.body.scrollTop = document.body.scrollTop+1;'
-		});
 		data_download(url_link);
 	}
-
-
-
-	///
-	///
-/*chrome.downloads.download({url: url_link}, function(downloadId) {
-    var ids = getOpeningIds();
-    if (ids.indexOf(downloadId) >= 0) {
-      return;
-    }
-    ids.push(downloadId);
-    setOpeningIds(ids);
-  });*/
-	//
 });
 
 chrome.contextMenus.create({
 	id: 'open',
-	title: 'Scan link for viruses',
+	title: 'Download and Scan link for viruses',
 	contexts: ['link'],
 });

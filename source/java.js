@@ -41,6 +41,7 @@ function key_test(val, ind) {
 			console.log("Setting key");
 			run();
 			click();
+			document.getElementById('texterr').innerHTML = "Valid Key Saved";
 		}
 	}
 

@@ -1,4 +1,4 @@
-// Agustin Roldan
+// Agustin Roldan 2014 https://metarco.com
 
 
 ///// check to see if this is a new install
@@ -7,12 +7,13 @@ function install() {
 
 	var time = new Date().getTime();
 	localStorage.setItem('install_time', time);
+	/// Open a install page to enter api key.
 	chrome.tabs.create({
 		url: "key_input.html"
 	});
 }
-install();
 
+install();
 
 /// This the the code that implements the api and does the appropiate actions for a given file.
 var obj_ret_results; /// JSON response for results
@@ -56,13 +57,13 @@ function get_results(origin) {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			/// Get response and begin analysis.
 			var obj_ret_results = JSON.parse(xmlhttp.responseText);
-			//var obj_ret = eval('('+xmlhttp.responseText+')');
 			console.log(obj_ret_results);
-			//sleep(3000);
 			console.log('Almost done : ' + obj_ret_results.scan_results.progress_percentage);
+			/// Get results and see if analysis is complete.
 			if (obj_ret_results.scan_results.progress_percentage < 100) {
-				//return;
+				// run setTimeout to wait 5 seconds and look for more updated results.
 				se = setTimeout(function () {
 					get_results(act_id.data_id);
 				}, 5000);
@@ -108,15 +109,15 @@ function send_file_api(file_data) {
 /// download file using url and create filereader object and begin analysis. find hash first.
 
 function data_download(url) {
-	/// this dfunction will run to test the data.
 	// Download data
 	// send data to api for analysis
-	// recieve response from api and mkae appropiate selection
+	// recieve response from api and make appropiate selection
 	// if ok, then using the same data blob download without haivng to re download. - crashing bug on second download.
 	// if not safe than take user to new page and show results data.
 	var xhr = new XMLHttpRequest();
 	//xhr.open('GET', 'http://www.awc.org/pdf/DA6-BeamFormulas.pdf', true);
 	xhr.open('GET', url, true);
+	/// This next line allows you to use the XMLHttpRequest to download binary data.
 	xhr.overrideMimeType('text\/plain; charset=x-user-defined');
 	xhr.responseType = 'blob';
 	xhr.onreadystatechange = function (e) {
@@ -127,6 +128,7 @@ function data_download(url) {
 			var c = new FileReader;
 			c.onload = function (e) {
 				// Calculate Hash
+				/// encode binary string for hash.
 				var hash = CryptoJS.SHA256(CryptoJS.enc.Latin1.parse(c.result));
 				console.log('SHA256 Hash : ' + hash);
 				// Do hash lookup first
@@ -135,6 +137,7 @@ function data_download(url) {
 
 
 			}
+			// read file as binary string for hash analysis
 			c.readAsBinaryString(blob_data);
 		}
 	}
