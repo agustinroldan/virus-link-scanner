@@ -3,9 +3,7 @@ var apikey = localStorage['apikey'];
 run();
 click();
 
-
-
-
+/// Check for valid key.
 function click() {
 	document.getElementById('bsub').onclick = function () {
 		var ind = document.getElementById('data');
@@ -13,14 +11,14 @@ function click() {
 	}
 }
 
-
+/// Fills in the code the html page.
 function run() {
 	if (undefined == apikey) {
-		document.getElementById('upload').innerHTML = "<p>Virus Link Scanner</p><div id='texterr'></div><input id='data' type='text' placeholder='update key here' ><button id='bsub' >Update Key</button>";
+		document.getElementById('upload').innerHTML = "<div id='texterr'></div><input id='data' type='text' placeholder='update key here' ><button id='bsub' >Update Key</button>";
 	}
 	/// Try doing your analysis.
 	else {
-		document.getElementById('upload').innerHTML = "<p>Virus Link Scanner</p><p>" + apikey + "</p><div id='texterr'></div><input id='data' type='text' placeholder='update key here' ><button id='bsub' >Update Key</button>";
+		document.getElementById('upload').innerHTML = "<p>" + apikey + "</p><div id='texterr'></div><input id='data' type='text' placeholder='update key here' ><button id='bsub' >Update Key</button>";
 	}
 
 }
