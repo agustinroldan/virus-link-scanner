@@ -5,7 +5,7 @@ Chrome extension : virus link scanner
 
 How to install: To use this extension, you will either need to use the compiled extension or the unpacked files in the source folder.
 
-Instructions:
+Instructions: Unpacked extension
 
 On the extensions section in chrome, select developer mode.
 
@@ -17,6 +17,19 @@ You will be prompted to adding your key by the extension. If no extension is add
 
 * When inserting an api key, it will be checked by initiating an api call with an example hash to ensure that the key is valid. When confirmed that it is valid, it will be saved to localstorage. If incorrect, it will not save it.
 
+
+Instructions: Compiled extension - ie. virus_scanner.crx in build folder of git repo.
+
+On the extensions section in chrome, select developer mode.
+
+Drag and drop the crx extension file onto the extension web page. 
+
+You will be prompeted to install the extension. Allow it.
+
+It will then be installed. Installer page will start then.
+
+
+Notes:
 
 Now it terms of downloading a clean file.
 
