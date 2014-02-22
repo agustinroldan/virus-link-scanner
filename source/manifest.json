@@ -1,22 +1,22 @@
 {
-	"name": "Virus Link Scanner",
+	"name": "Virus Link Scanner - Powered by Metascan Online",
 	"version": "0.1",
 	"manifest_version": 2,
-	"description": "A link scanner. Detect viruses before saving onto your computer.",
+	"description": "Detect viruses before downloading them.",
 	"icons": {
-		"16": "icon_small.png",
-		"128": "icon_big.png"
+		"16": "img/small.png",
+		"128": "img/large.png"
 	},
 
 	"browser_action": {
 		"default_title": "Link Scanner",
-		"default_icon": "icon_big.png",
+		"default_icon": "img/large.png",
 		"default_popup": "popup.html"
 	},
 	"background": {
 		"persistent": false,
 		"matches": ["http://*/*", "https://*/*"],
-		"scripts": ["sha256.js", "Blob.js", "FileSaver.js", "background.js", "main.js"]
+		"scripts": ["md5.js", "Blob.js", "FileSaver.js", "background.js", "main.js"]
 	},
 	"permissions": ["contextMenus", "downloads", "downloads.open", "http://*/", "https://*/", "tabs"]
 }

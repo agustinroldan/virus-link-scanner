@@ -73,6 +73,18 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 
 chrome.contextMenus.create({
 	id: 'open',
-	title: 'Download and Scan link for viruses',
+	title: 'Scan url link for viruses',
 	contexts: ['link'],
 });
+chrome.downloads.onCreated.addListener(function(downloadItem){
+if(localStorage['auto'] === '1'){
+	chrome.downloads.pause(downloadItem.id);
+	var furl = downloadItem.url;
+	data_download(furl);
+	console.log("auto");
+}
+console.log(downloadItem.id);
+//chrome.downloads.resume(integer downloadId, function callback)
+
+});
+

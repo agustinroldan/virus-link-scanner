@@ -18,12 +18,9 @@ function run() {
 	}
 	/// Try doing your analysis.
 	else {
-		document.getElementById('upload').innerHTML = "<p>" + apikey + "</p><div id='texterr'></div><input id='data' type='text' placeholder='update key here' ><button id='bsub' >Update Key</button>";
+		document.getElementById('upload').innerHTML = "<p>" + apikey + "</p><div id='texterr'></div><input id='data' type='text' placeholder='update key here' ><button id='bsub' >Update Key</button><br><a id='link_history' href='#history'>Scan History</a>";
 	}
-
 }
-
-
 
 function key_test(val, ind) {
 	hash_data = '057db92f3d0c4c2490a95297b556b9a9';
