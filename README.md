@@ -3,7 +3,7 @@ virus-link-scanner
 
 
 Description: 
-	This extension uses the Metascan Online API to analyze file links for potential virus threats. This extension adds a context menu option when right clicking on a link to scan the file before downloading. Risky files will not be downloaded, while clean files will. Results page will be shown for risky files.
+	This extension uses the Metascan Online API to analyze file links for potential virus threats. This extension adds a context menu option when right clicking on a link to scan the file before downloading. Results page will be shown for risky files.
 
 Chrome extension : virus link scanner 
 
@@ -35,25 +35,14 @@ Instructions: Compiled extension - ie. virus_scanner.crx in build folder of git 
 
 User Instructions:
 
-	While on a web page, select and right click on a link that your interested in downloading but are unsure if the link is safe.
+	While on a web page, select and right click on a link that your interested in scanning for viruses.
 	
-	In the context menu, select the following option : "Download and Scan link for viruses".
+	In the context menu, select the following option : "Scan link for viruses"
 	
-	The extension will begin doing the analysis and determine the appropiate steps.
+	The extension will begin analyzing the file url and when results are available, a results page will open.
 	
-	If a virus exists, you will be taken to a new page with the results of the scan. No download will occur.
+	If you enable the "Scan all downloads" feature in the popup menu, all new downloads will be scanned automatically without using the right click feature. This feature is disabled by default, but it may be enabled in the popup menu.
 	
-	If the file is clean, then you will be prompted to save the file instead.
-	
-
-
-
-Notes:
-
-Now it terms of downloading a clean file.
-
-There are two implementations included for downloading the file. If the saveAS function is used, then the blob data sent to the api can be sent and downloaded to the users computer (Thus reusing the blob data in the client side). The second is an api call to chromes download function to download a file. Using this second implementation will require that you re-download the file. Ideally, it would be best to reuse the blob data instead to avoid having to do the second implementation. Both are included in the function and can be used by commenting and uncommenting depending on which you would like to use.
-
 ~Agustin Roldan
 metarco.com
 
