@@ -102,7 +102,9 @@ function send_file_api(file_data) {
 		}
 	}
 	http.open("POST", "https://api.metascan-online.com/v1/file", true);
-	http.setRequestHeader("apikey", localStorage['apikey']);
+	http.setRequestHeader("apikey", localStorage['apikey']);		
+	var url_name_f = url_link.substring(url_link.lastIndexOf('/') + 1);
+	http.setRequestHeader("filename", url_name_f);		
 	http.send(file_data);
 }
 
@@ -132,11 +134,28 @@ function data_download(url) {
 				// Calculate Hash
 				/// encode binary string for hash.
 				
-				/// MD5 Hash used for faster hashing determination.
-				var hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(c.result));
-				//var hash = CryptoJS.SHA256(CryptoJS.enc.Latin1.parse(c.result));
+				var file_encode_string = CryptoJS.enc.Latin1.parse(c.result);
+				/// SHA1 Hash used as its hashing time was smaller then md5 and sha256 when compared. Speed test code commented out.
+//				var start = new Date().getTime();
+//				var hash = CryptoJS.MD5(file_encode_string);
+//				var end = new Date().getTime();
+//				var time = end - start;
+//				console.log("Time taken for MD5: "+ time);
+//				
+//				var start = new Date().getTime();
+//				var hash_256 = CryptoJS.SHA256(file_encode_string);
+//				var end = new Date().getTime();
+//				var time = end - start;
+//				console.log("Time taken for 256: "+ time);
+				
+//				var start = new Date().getTime();
+				var hash = CryptoJS.SHA1(file_encode_string);
+//				var end = new Date().getTime();
+//				var time = end - start;
+//				console.log("Time taken for sha1: "+ time);
+				
 				//console.log('SHA256 Hash : ' + hash);
-				console.log('MD5 Hash : ' + hash);
+				console.log('SHA1 Hash : ' + hash);
 				// Do hash lookup first
 				console.log('Doing Hash Lookup First....');
 				link_send(hash);
@@ -159,35 +178,13 @@ function scan_check(res_scan, obj_ret) {
 		var url_name_f = url_link.substring(url_link.lastIndexOf('/') + 1);
 		var url_ori = url_link;
 		history(url_ori,url_resf,url_name_f,res_scan);
-
-		// Check to see if infected or not
-		if (res_scan == 'Infected') {
-		/// Now links to the metascan online page for results.
-		//window.open("https://www.metascan-online.com/en/scanresult/file/"+obj_ret.data_id);
-			//var res_page = window.open("", "Results", "width=700,height=900px,");
-			//var temp_res = JSON.stringify(obj_ret);
-			//res_page.document.write("<head><title>Results</title><script src='https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js'></script></head><h2>Virus Link Scanner Results : Infected</h2>");
-			//res_page.document.write("<pre class='prettyprint'>" + JSON.stringify(obj_ret, undefined, 2) + "</pre>");
-			//res_page.document.close();
-		} else if (res_scan == 'Clean') {
-				//window.open("https://www.metascan-online.com/en/scanresult/file/"+obj_ret.data_id);
-
-			// using saveAS will reuse the blob data and avoid having to make another resource request.
-			//saveAs(blob_data, url_link.substring(url_link.lastIndexOf('/') + 1));
-			/*chrome.downloads.download({
-				url: url_link,
-				saveAs: true
-			}, function (downloadId) {
-				return;
-			});*/
-		}
-
 	}
-
-
 }
 
 function history(url_or,url_res,o_name,status){
+	if(o_name === ''){
+	o_name = url_or;
+	}
 	var his_local = localStorage['history'];
 	var his_item = {"item":[o_name,url_or,url_res,status]};	
 	

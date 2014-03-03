@@ -7,7 +7,7 @@ var temp_res = JSON.parse(localStorage['history']);
 			for(var key in item_d){
 				var data = item_d[key];
 
-				final_html +="<tr><td style='padding:15px;text-align:left;width:50%;overflow:hidden;'><a target='_blank' href='"+data[1]+"'>"+data[1]+"</a></td><td style='width:30%;overflow:hidden;'><a target='_blank' href='"+data[2]+"'>Results</a></td><td style='width:20%;overflow:hidden;'>"+data[3]+"</td></tr>";
+				final_html +="<tr><td style='padding:15px;text-align:left;width:50%;overflow:hidden;'><div style='width:225px;overflow:hidden'><a target='_blank' href='"+data[1]+"'>"+data[0]+"</a></div></td><td style='width:30%;overflow:hidden;'><a target='_blank' href='"+data[2]+"'>Results</a></td><td style='width:20%;overflow:hidden;'>"+data[3]+"</td></tr>";
 			}
 		}
 		final_html +="</body>";

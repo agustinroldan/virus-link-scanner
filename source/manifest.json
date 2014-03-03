@@ -16,7 +16,7 @@
 	"background": {
 		"persistent": false,
 		"matches": ["http://*/*", "https://*/*"],
-		"scripts": ["md5.js", "Blob.js", "FileSaver.js", "background.js", "main.js"]
+		"scripts": ["sha1.js","Blob.js", "FileSaver.js", "background.js", "main.js"]
 	},
 	"permissions": ["contextMenus", "downloads", "downloads.open", "http://*/", "https://*/", "tabs"]
 }
