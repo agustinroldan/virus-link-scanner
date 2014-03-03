@@ -46,3 +46,32 @@ function key_test(val, ind) {
 	xmlhttp.setRequestHeader("apikey", val);
 	xmlhttp.send();
 }
+
+/// Check for auto scan request.
+document.getElementById('auto_check').onclick = function () {
+	if(this.checked){
+		console.log("Automatic Scanning Enabled");
+		localStorage['auto'] = '1';
+	}
+	else{
+		console.log("Automatic Scanning Disabled");
+		localStorage['auto'] = '0';
+	}
+	}
+	
+/// show auto scan request selection on load
+var auto_option = document.getElementById('auto_check');
+	if(localStorage['auto'] === '1'){
+		auto_option.checked = true;
+	}
+	else{
+		auto_option.checked = false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	

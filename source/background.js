@@ -78,10 +78,10 @@ chrome.contextMenus.create({
 });
 chrome.downloads.onCreated.addListener(function(downloadItem){
 if(localStorage['auto'] === '1'){
-	chrome.downloads.pause(downloadItem.id);
-	var furl = downloadItem.url;
-	data_download(furl);
-	console.log("auto");
+	//chrome.downloads.pause(downloadItem.id);
+	url_link = downloadItem.url;
+	data_download(url_link);
+	console.log("auto scanning started");
 }
 console.log(downloadItem.id);
 //chrome.downloads.resume(integer downloadId, function callback)

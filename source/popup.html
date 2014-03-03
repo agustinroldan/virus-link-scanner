@@ -32,7 +32,7 @@
 	button:focus {
 	    outline: 0;
 	}
-	input{
+	input[type=text]{
 	font-size:large;
 	width:80%;
 	}
@@ -47,7 +47,9 @@
      <div id="main" style="position:relative;z-index:2;width:300px;height:200px;">
 		    <p>Virus Link Scanner</p>
 		<div id="upload"></div>
-		<p>Need a Api Key : <a href="https://portal.opswat.com/" target="_blank">OPSWAT Portal</a></p>
+		<label for="auto_check" >Scan all downloads: </label><input id="auto_check" type='checkbox' />
+		
+		<p style="position:relative;float:left;left:20px;">Need a Api Key : <a href="https://portal.opswat.com/" target="_blank">OPSWAT Portal</a></p>
 
    <div>
    		
