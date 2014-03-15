@@ -73,7 +73,7 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 
 chrome.contextMenus.create({
 	id: 'open',
-	title: 'Scan url link for viruses',
+	title: 'Scan link with Metascan Online',
 	contexts: ['link'],
 });
 chrome.downloads.onCreated.addListener(function(downloadItem){
