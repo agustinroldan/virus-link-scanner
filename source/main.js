@@ -47,15 +47,16 @@ function link_send(origin) {
 		}
 	}
 
-	xmlhttp.open("GET", "https://api.metascan-online.com/v1/hash/" + hash_data, true);
+	xmlhttp.open("GET", "https://hashlookup.metascan-online.com/v2/hash/" + hash_data, true);
 	xmlhttp.setRequestHeader("apikey", localStorage['apikey']);
 	xmlhttp.send();
 }
 
 /// send id data and get results. Repeat checking till 100 percent reached.
 
-function get_results(origin) {
+function get_results(origin,ip_ch) {
 	hash_data = origin;
+	rest_check = ip_ch;
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -67,7 +68,7 @@ function get_results(origin) {
 			if (obj_ret_results.scan_results.progress_percentage < 100) {
 				// run setTimeout to wait 5 seconds and look for more updated results.
 				se = setTimeout(function () {
-					get_results(act_id.data_id);
+					get_results(act_id.data_id,act_id.rest_ip);
 				}, 5000);
 			}
 			if (obj_ret_results.scan_results.progress_percentage == 100) {
@@ -81,7 +82,7 @@ function get_results(origin) {
 		}
 	}
 
-	xmlhttp.open("GET", "https://api.metascan-online.com/v1/file/" + hash_data, true);
+	xmlhttp.open("GET", "https://"+rest_check+"/file/"+ hash_data, true);
 	xmlhttp.setRequestHeader("apikey", localStorage['apikey']);
 	xmlhttp.send();
 }
@@ -98,10 +99,10 @@ function send_file_api(file_data) {
 			console.log(blob_id);
 			act_id = JSON.parse(blob_id);
 			console.log(act_id.data_id);
-			get_results(act_id.data_id);
+			get_results(act_id.data_id,act_id.rest_ip);
 		}
 	}
-	http.open("POST", "https://api.metascan-online.com/v1/file", true);
+	http.open("POST", "https://scan.metascan-online.com/v2/file", true);
 	http.setRequestHeader("apikey", localStorage['apikey']);		
 	var url_name_f = url_link.substring(url_link.lastIndexOf('/') + 1);
 	http.setRequestHeader("filename", url_name_f);		
@@ -180,7 +181,6 @@ function scan_check(res_scan, obj_ret) {
 		history(url_ori,url_resf,url_name_f,res_scan);
 	}
 }
-
 function history(url_or,url_res,o_name,status){
 	if(o_name === ''){
 	o_name = url_or;

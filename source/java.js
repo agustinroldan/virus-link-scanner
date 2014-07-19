@@ -42,7 +42,7 @@ function key_test(val, ind) {
 		}
 	}
 
-	xmlhttp.open("GET", "https://api.metascan-online.com/v1/hash/" + hash_data, true);
+	xmlhttp.open("GET", "https://hashlookup.metascan-online.com/v2/hash/" + hash_data, true);
 	xmlhttp.setRequestHeader("apikey", val);
 	xmlhttp.send();
 }
